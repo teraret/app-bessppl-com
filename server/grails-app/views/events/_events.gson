@@ -1,0 +1,7 @@
+import app.bessppl.com.Events
+
+model {
+	Events events
+}
+
+json g.render(events, [resolveTemplate: false])

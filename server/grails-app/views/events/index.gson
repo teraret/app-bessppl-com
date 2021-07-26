@@ -1,0 +1,8 @@
+import app.bessppl.com.Events
+
+model {
+	Iterable<Events> eventsList
+}
+
+json tmpl.events(eventsList ?: [])
+

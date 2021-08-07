@@ -49,7 +49,7 @@ dependencies {
     compile "org.grails:grails-logging"
     compile "org.grails.plugins:cache"
     compile "org.grails.plugins:async"
-    compile "org.grails.plugins:spring-security-rest:3.0.1"
+    //compile "org.grails.plugins:spring-security-rest:3.0.1"
     compile "org.grails.plugins:mongodb"
     compile "org.grails.plugins:views-json"
     compile "org.grails.plugins:views-json-templates"

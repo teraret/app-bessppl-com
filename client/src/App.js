@@ -1,78 +1,44 @@
-import React, {Component} from 'react';
-import AppNav from './AppNav';
-import {Row} from 'reactstrap'
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
 
-import grailsLogo from './images/grails-cupsonly-logo-white.svg';
-import reactLogo from './images/logo.svg';
-import {CLIENT_VERSION, REACT_VERSION, SERVER_URL} from './config';
-import 'whatwg-fetch';
-import Footer from "./Footer";
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    flexGrow: 1,
+  },
+}));
 
-class App extends Component {
+export default function App() {
+  const classes = useStyles();
 
-    state = {
-      serverInfo: {},
-      clientInfo: {
-        version: CLIENT_VERSION,
-        react: REACT_VERSION
-      },
-      collapse: false
-    }
-
-    toggle = () => {
-        this.setState({collapse: !!this.state.collapse})
-    }
-
-    componentDidMount() {
-        fetch(SERVER_URL + '/application')
-            .then(r => r.json())
-            .then(json => this.setState({serverInfo: json}))
-            .catch(error => console.error('Error connecting to server: ' + error));
-
-    }
-
-    render() {
-        const {serverInfo, clientInfo, collapse} = this.state;
-
-        return [
-            <AppNav serverInfo={serverInfo} clientInfo={clientInfo} collapse={collapse} toggle={this.toggle} key={0}/>,
-            <div className="grails-logo-container" key={1}>
-                <img className="grails-logo" src={grailsLogo} alt="Grails"/>
-                <span className="plus-logo">+</span>
-                <img className="hero-logo" src={reactLogo} alt="React"/>
-            </div>,
-
-            <Row key={2}>
-                <div id="content">
-                    <section className="row colset-2-its">
-                        <h1 style={{textAlign: 'center'}}>Welcome to Grails</h1>
-                        <br/>
-                        <p>
-                            Congratulations, you have successfully started your Grails & React application! While in
-                            development mode, changes will be loaded automatically when you edit your React app,
-                            without even refreshing the page.
-                            Below is a list of controllers that are currently deployed in
-                            this application, click on each to execute its default action:
-                        </p>
-
-                        <div id="controllers" role="navigation">
-                            <h2>Available Controllers:</h2>
-                            <ul>
-                                {serverInfo.controllers ? serverInfo.controllers.map(controller => {
-                                    return <li key={controller.name}><a
-                                        href={SERVER_URL + controller.logicalPropertyName}>{controller.name}</a>
-                                    </li>;
-                                }) : null}
-                            </ul>
-                        </div>
-                    </section>
-
-                </div>
-
-            </Row>,
-            <Footer key={3}/>
-        ];
-    }
+  return (
+    <div className={classes.root}>
+      <AppBar position="static">
+        <Toolbar>
+          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" className={classes.title}>
+          <a href="/">
+          <img src="/inverse.png" alt="Bessppl" width={108} height={16} />
+          </a>
+          </Typography>
+          <Button color="inherit">Become a Mentor</Button>
+          <Button color="inherit">Become a Student</Button>
+          <Button  variant="outlined" color="secondary">Login</Button>
+        </Toolbar>
+      </AppBar>
+    </div>
+  );
 }
-
-export default App;

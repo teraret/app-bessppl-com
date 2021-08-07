@@ -75,6 +75,10 @@ grails:
     cors:
         enabled: true
 ---
+grails:
+    resources:
+        pattern: '/**'
+---
 #grails:
 #    mongodb:
 #        host: localhost

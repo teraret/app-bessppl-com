@@ -1,10 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import 'bootstrap/dist/css/bootstrap.css';
-import './css/App.css';
-import './css/grails.css';
-import './css/main.css';
-
-ReactDOM.render(<App />, document.getElementById('root'));
-ReactDOM.render(<App />, document.getElementById('root'));
+import { ThemeProvider } from '@material-ui/core/styles';
+import theme from './theme';
+ReactDOM.render(<ThemeProvider theme={theme}><App /></ThemeProvider>, document.getElementById('root'));

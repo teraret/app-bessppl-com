@@ -1,39 +1,28 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { Component } from 'react';
+import React from 'react';
 
 import { StyleSheet, Text, View } from 'react-native';
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
-import { ECharts } from "react-native-echarts-wrapper";
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Home from './pages/Home';
+import Login from './pages/Login';
+
+const Stack = createNativeStackNavigator();
 
  function Main (){
-  let option = {
-      xAxis: {
-          type: 'category',
-          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-      },
-      yAxis: {
-          type: 'value'
-      },
-      series: [{
-          data: [820, 932, 901, 934, 1290, 1330, 1320],
-          type: 'line'
-      }]
-  };
-
-
-      return (
-          <View style={styles.chartContainer}>
-              <ECharts option={option}></ECharts>
-          </View>
-      );
+      return <NavigationContainer>
+               <Stack.Navigator
+                screenOptions={{
+                  headerShown: false
+                }}
+               >
+                <Stack.Screen name="Login" component={Login} />
+                <Stack.Screen name="Home" component={Home} />
+               </Stack.Navigator>
+            </NavigationContainer>;
  
 }
-
-const styles = StyleSheet.create({
-  chartContainer: {
-      flex: 1,
-  },
-});
 
 
 const theme = {
